@@ -3,6 +3,32 @@ package CaseMethod24;
 import java.util.Scanner;
 
 public class Main {
+    static void bukuTerbanyak(Peminjaman[] pinjam, Buku[] buku){
+        int max =0;
+        Buku palingSering = null;
+        
+    System.out.println("\nJumlah peminjaman tiap buku:");
+    for (int i = 0; i < buku.length; i++) {
+        int count = 0;
+
+        for (int j = 0; j < pinjam.length; j++) {
+            if (pinjam[j].buku.judul.equals(buku[i].judul)) {
+                count++;
+            }
+        }
+
+        System.out.println(buku[i].judul + " = " + count + " kali");
+
+        if (count > max) {
+            max = count;
+            palingSering = buku[i];
+        }
+    }
+        System.out.println("\nBUKU PALING SERING DIPINJAM: ");
+        if (palingSering != null) {
+            System.out.println(palingSering.judul + " (" + max + " kali)");
+        }
+    }
 public static void main(String[] args) {
     Scanner s = new Scanner(System.in);
 
@@ -32,6 +58,7 @@ public static void main(String[] args) {
             System.out.println("3. Tampilkan Peminjaman");
             System.out.println("4. Urutkan Berdasarkan Denda");
             System.out.println("5. Cari Berdasarkan NIM (Binary Search)");
+            System.out.println("6. Buku Yang Sering Dipinjam");
             System.out.println("0. Keluar");
             System.out.print("Pilih: ");
             pilih = s.nextInt();
@@ -132,6 +159,9 @@ public static void main(String[] args) {
                     if (!ketemu) {
                         System.out.println("Data tidak ditemukan!");
                     }
+                    break;
+                case 6:
+                    bukuTerbanyak(pinjam, buku);
                     break;
             }
 
